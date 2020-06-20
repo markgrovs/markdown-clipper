@@ -19,12 +19,12 @@ function convertArticleToMarkdown(article, source) {
     var markdown = turndownService.turndown(article.content);
 
     //add summary if exist
-    if (!!article.excerpt) {
-        markdown = "\n> " + article.excerpt + "\n\n" + markdown;
-    }
-
-    //add article titel as header
-    markdown = "# " + article.title + "\n" + markdown;
+    // if (!!article.excerpt) {
+    //     markdown = "\n> " + article.excerpt + "\n\n" + markdown;
+    // }
+    
+    //add article title as header
+    markdown = "# " + article.title + "\n\n" + markdown;
 
     //add source if exist
     if (!!source) {
@@ -38,6 +38,7 @@ function generateValidFileName(title) {
     //remove < > : " / \ | ? *
     var illegalRe = /[\/\?<>\\:\*\|":]/g;
     var name = title.replace(illegalRe, "");
+    var name = name.replaceAll(" ", "-");
     return name;
 }
 
